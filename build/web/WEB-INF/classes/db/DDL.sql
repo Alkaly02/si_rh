@@ -64,9 +64,10 @@ CREATE TABLE paiements(
     FOREIGN KEY (employe_id) REFERENCES employes(id)
 ); 
 
-CREATE TABLE presences(
+CREATE TABLE pointages(
     id INT PRIMARY KEY AUTO_INCREMENT,
     date DATE NOT NULL,
+    statut ENUM ("PRESENT", "ABSENT"),
     heure_arrivee TIME,
     heure_depart TIME,
     employe_id INT NOT NULL,
