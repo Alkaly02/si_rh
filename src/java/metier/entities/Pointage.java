@@ -6,24 +6,31 @@ package metier.entities;
 
 import java.io.Serializable;
 
+enum Statut{
+    PRESENT,
+    ABSENT
+}
+
 /**
  *
  * @author HP
  */
-public class Presence implements Serializable {
+public class Pointage implements Serializable {
     private int id;
     private String date;
     private String heure_arrivee;
     private String heure_depart;
+    private Statut statut;
     private int employe_id;
 
-    public Presence() {}
+    public Pointage() {}
 
-    public Presence(String date, String heure_arrivee, String heure_depart, int employe_id) {
+    public Pointage(String date, String heure_arrivee, String heure_depart, int employe_id, Statut statut) {
         this.date = date;
         this.heure_arrivee = heure_arrivee;
         this.heure_depart = heure_depart;
         this.employe_id = employe_id;
+        this.statut = statut;
     }
 
     public int getId() {
@@ -66,7 +73,12 @@ public class Presence implements Serializable {
         this.employe_id = employe_id;
     }
     
-    
-    
+    public Statut getStatut() {
+        return statut;
+    }
+
+    public void setStatut(Statut statut) {
+        this.statut = statut;
+    }    
     
 }

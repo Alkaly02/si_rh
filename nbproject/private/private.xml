@@ -3,9 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/si_rh/src/java/db/DDL.sql</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/si_rh/src/java/dao/CategorieEmployeDeductionDao.java</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/si_rh/src/java/dao/CategorieEmployeDao.java</file>
             <file>file:/C:/Users/HP/Documents/NetBeansProjects/si_rh/web/index.html</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/si_rh/web/views/connexion.jsp</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/si_rh/web/views/header.jsp</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/si_rh/src/java/db/seeds/Seeding.java</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/si_rh/src/java/dao/DeductionDao.java</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/si_rh/src/java/dao/tests/TestsDao.java</file>
         </group>
     </open-files>
 </project-private>

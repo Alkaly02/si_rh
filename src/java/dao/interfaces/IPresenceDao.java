@@ -4,12 +4,12 @@
  */
 package dao.interfaces;
 
-import metier.entities.Presence;
+import metier.entities.Pointage;
 
 /**
  *
  * @author HP
  */
 public interface IPresenceDao {
-    public void save(Presence p);
+    public void save(Pointage p);
 }
