@@ -49,15 +49,15 @@ public class Seeding {
         categories.add(new CategorieEmploye("Employé à temps partiel"));
         
 //        enregistrement des deductions
+        IDeductionDao deductionDao = new DeductionDao();
         for(Deduction deduction : deductions){
-            IDeductionDao deductionDao = new DeductionDao();
             Deduction d = deductionDao.save(deduction);
             deduction.setId(d.getId());
         }
         
 //      enregistrement des categories
+        ICategorieEmployeDao categorieDao = new CategorieEmployeDao();
         for(CategorieEmploye categorie : categories){
-            ICategorieEmployeDao categorieDao = new CategorieEmployeDao();
             CategorieEmploye c = categorieDao.save(categorie);
             categorie.setId(c.getId());
         }
