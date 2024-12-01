@@ -82,6 +82,6 @@ public class Seeding {
             }
         }
         
-        System.out.println("================Seedind Database Done==================");
+        System.out.println("================Seeding Database Done==================");
     }
 }
