@@ -73,11 +73,11 @@ public class Employe implements Serializable {
         this.poste = poste;
     }
 
-    public Double getSalaire_brut() {
+    public Double getSalaireBrut() {
         return salaire_brut;
     }
 
-    public void setSalaire_brut(Double salaire_brut) {
+    public void setSalaireBrut(Double salaire_brut) {
         this.salaire_brut = salaire_brut;
     }
 
@@ -89,11 +89,11 @@ public class Employe implements Serializable {
         this.type = type;
     }
 
-    public int getCategorie_id() {
+    public int getCategorieId() {
         return categorie_id;
     }
 
-    public void setCategorie_id(int categorie_id) {
+    public void setCategorieId(int categorie_id) {
         this.categorie_id = categorie_id;
     }
     
