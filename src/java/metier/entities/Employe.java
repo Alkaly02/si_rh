@@ -27,12 +27,12 @@ public class Employe implements Serializable {
     private String nom;
     private String poste;
     private Double salaire_brut;
-    private TypeEmploye type;
+    private String type;
     private int categorie_id;
 
     public Employe() {}
 
-    public Employe(String prenom, String nom, String poste, Double salaire_brut, TypeEmploye type, int categorie_id) {
+    public Employe(String prenom, String nom, String poste, Double salaire_brut, String type, int categorie_id) {
         this.prenom = prenom;
         this.nom = nom;
         this.poste = poste;
@@ -81,11 +81,11 @@ public class Employe implements Serializable {
         this.salaire_brut = salaire_brut;
     }
 
-    public TypeEmploye getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(TypeEmploye type) {
+    public void setType(String type) {
         this.type = type;
     }
 

@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import metier.entities.CategorieEmploye;
 
 /**
@@ -40,6 +42,28 @@ public class CategorieEmployeDao implements ICategorieEmployeDao{
             e.printStackTrace();
         }
         return c;
+    }
+
+    @Override
+    public List<CategorieEmploye> get() {
+        List<CategorieEmploye> categories = new ArrayList<>();
+        //      Recuperation de la connexion a la base de donnees
+        try(Connection connection = DbConnection.getConnection();){
+//          Preparation de la requete
+            String query = "SELECT * FROM categorie_employes";
+            PreparedStatement ps = connection.prepareStatement(query);
+//          Executer la requete
+            ResultSet cetagoriesResultSet = ps.executeQuery();
+            while(cetagoriesResultSet.next()){
+                CategorieEmploye categorie = new CategorieEmploye(cetagoriesResultSet.getString("libelle"));
+                categorie.setId(cetagoriesResultSet.getInt("id"));
+                categories.add(categorie);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+        return categories;
     }
     
 }

@@ -4,6 +4,7 @@
  */
 package dao.interfaces;
 
+import java.util.List;
 import metier.entities.CategorieEmploye;
 
 /**
@@ -12,4 +13,5 @@ import metier.entities.CategorieEmploye;
  */
 public interface ICategorieEmployeDao {
     public CategorieEmploye save(CategorieEmploye c);
+    public List<CategorieEmploye> get();
 }
