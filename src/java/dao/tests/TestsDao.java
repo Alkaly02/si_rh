@@ -25,7 +25,10 @@ public class TestsDao {
 //      update employe teste
         Employe employe2 = new Employe("Lamine", "COLY", "PM", 750000.0, "ADMIN RH", 2);
         employe2.setId(1);
-        employeDao.edit(employe2);
+//        employeDao.edit(employe2);
+        
+//        Paiement salaire
+        employeDao.payerSalaire(employe2, "Janvier", 25000.0);
         
         System.out.println(searchEmploye.getPrenom());
     }

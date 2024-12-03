@@ -4,17 +4,13 @@
  */
 package dao.interfaces;
 
-import java.util.List;
 import metier.entities.Employe;
 
 /**
  *
  * @author HP
  */
-public interface IEmployeDao {
-    public Employe save(Employe employe);
-    public void edit(Employe employe);
-    public List<Employe> getAll();
-    public Employe getOne(int id);
-    public void payerSalaire(Employe employe, String mois, Double prime);
+public interface IPointageDao {
+    public void marquerPresent(Employe employe);
+    public void marquerAbsent(Employe employe);
 }

@@ -10,13 +10,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>SIRH - Liste</title>
         <%@include file="../header.jsp" %>
     </head>
     <body>
         <div class="container mt-5">
             <h1>Liste des Employés</h1>
-            
 
             <!-- Message de succès -->
             <%--<c:if test="${not empty successMessage}">--%>
@@ -43,7 +42,8 @@
                             <td>${employe.prenom}</td>
                             <td>${employe.nom}</td>
                             <td>${employe.poste}</td>
-                            <td>
+                            <td class="d-flex gap-2">
+                                <a href="paiementSalaire?id=${employe.id}" class="btn btn-success btn-sm">Payer</a>
                                 <a href="modifierEmploye?id=${employe.id}" class="btn btn-warning btn-sm">Modifier</a>
                             </td>
                         </tr>

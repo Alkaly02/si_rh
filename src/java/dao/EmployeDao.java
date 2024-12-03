@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import metier.entities.Employe;
@@ -115,6 +116,46 @@ public class EmployeDao implements IEmployeDao{
             e.printStackTrace();
         }
         return employe;
+    }
+
+    @Override
+    public void payerSalaire(Employe employe, String mois, Double prime) {
+
+     // TODO: Verifier s'il n'y a pas deja pour le mois selectionne
+
+    // Connexion à la base de données
+    try (Connection connection = DbConnection.getConnection()) {
+        // Requête SQL pour insérer le paiement
+        String sql = "INSERT INTO paiements (prime, salaire_net, mois, annee, date_paiement, employe_id) " +
+                     "VALUES (?, ?, ?, ?, ?, ?)";
+        // Calcul automatique de la date de paiement et de l'année
+        LocalDate datePaiement = LocalDate.now(); // Date actuelle du système
+        int annee = datePaiement.getYear();       // Année extraite de la date actuelle
+        Double salaireNet = employe.getSalaireBrut() + prime;
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            // Remplissage des paramètres de la requête
+            statement.setDouble(1, prime);
+            statement.setDouble(2, salaireNet);
+            statement.setString(3, mois);
+            statement.setInt(4, annee);
+            statement.setDate(5, java.sql.Date.valueOf(datePaiement));
+            statement.setInt(6, employe.getId());
+
+            // Exécution de la requête
+            int rowsInserted = statement.executeUpdate();
+
+            // Vérification du résultat
+            if (rowsInserted == 0) {
+                throw new SQLException("Le paiement n'a pas pu être enregistré dans la base de données.");
+            }
+        }
+
+        } catch (SQLException e) {
+            // Gestion des erreurs SQL
+            e.printStackTrace();
+            throw new RuntimeException("Une erreur est survenue lors de l'enregistrement du paiement.", e);
+        }
     }
     
 }

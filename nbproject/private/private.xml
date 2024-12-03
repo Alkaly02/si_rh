@@ -3,13 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/si_rh/src/java/dao/CategorieEmployeDao.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/si_rh/src/java/metier/entities/Employe.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/si_rh/src/java/controllers/AjoutEmploye.java</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/si_rh/src/java/db/DDL.sql</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/si_rh/src/java/controllers/PointageEmployes.java</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/si_rh/src/java/dao/interfaces/IPointageDao.java</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/si_rh/web/views/admin/pointageEmployes.jsp</file>
             <file>file:/C:/Users/HP/Documents/NetBeansProjects/si_rh/web/views/admin/ajoutEmploye.jsp</file>
             <file>file:/C:/Users/HP/Documents/NetBeansProjects/si_rh/src/java/dao/tests/TestsDao.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/si_rh/src/java/dao/interfaces/ICategorieEmployeDao.java</file>
             <file>file:/C:/Users/HP/Documents/NetBeansProjects/si_rh/web/views/admin/listeEmployes.jsp</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/si_rh/src/java/dao/PointageDao.java</file>
         </group>
     </open-files>
 </project-private>
