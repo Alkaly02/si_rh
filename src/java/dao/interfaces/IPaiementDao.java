@@ -4,6 +4,7 @@
  */
 package dao.interfaces;
 
+import java.util.List;
 import metier.entities.Paiement;
 
 /**
@@ -11,5 +12,6 @@ import metier.entities.Paiement;
  * @author HP
  */
 public interface IPaiementDao {
-    public void save(Paiement paiement);
+    public List<Paiement> getAll();
+    public Paiement getFichePaieByEmployeId(int employeId);
 }

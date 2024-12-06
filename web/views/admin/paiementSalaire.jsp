@@ -13,6 +13,7 @@
         <%@include file="../header.jsp" %>
     </head>
     <body>
+        <%@include file="../navbar.jsp" %>
         <div class="container">
             <h2 class="text-center mt-4">Paiment salaire de un employé ${employe.getPrenom()} ${employe.getNom()}</h2>
             <c:if test="${not empty errors}">
@@ -35,17 +36,17 @@
                         <select class="form-select" aria-label="Selecionner le mois de paie" name="mois">
                           <option value="">Sélectionner le mois de paie</option>
                           <option value="Janvier">Janvier</option>
-                          <option value="Février">Février</option>
+                          <option value="Fevrier">Février</option>
                           <option value="Mars">Mars</option>
                           <option value="Avril">Avril</option>
                           <option value="Mai">Mai</option>
                           <option value="Juin">Juin</option>
                           <option value="Juillet">Juillet</option>
-                          <option value="Août">Août</option>
+                          <option value="Aout">Août</option>
                           <option value="Septembre">Septembre</option>
                           <option value="Octobre">Octobre</option>
                           <option value="Novembre">Novembre</option>
-                          <option value="Décembre">Décembre</option>
+                          <option value="Decembre">Décembre</option>
                         </select>  
                     </div>
                 </div>

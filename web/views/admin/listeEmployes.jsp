@@ -14,23 +14,21 @@
         <%@include file="../header.jsp" %>
     </head>
     <body>
+        <%@include file="../navbar.jsp" %>
         <div class="container mt-5">
             <h1>Liste des Employés</h1>
 
             <!-- Message de succès -->
-            <%--<c:if test="${not empty successMessage}">--%>
-                <div class="alert alert-success" role="alert">
-                    <%= request.getParameter("successMessage") %>
-                </div>
-            <%--</c:if>--%>
-
+            <%@include file="../successPage.jsp" %>
             <!-- Tableau des employés -->
+            <a href="ajoutEmploye" class="btn btn-success">Nouveau employé</a>
             <table class="table table-bordered table-striped mt-3">
                 <thead class="table-dark">
                     <tr>
                         <th>ID</th>
                         <th>Prénom</th>
                         <th>Nom</th>
+                        <th>Salaire brut</th>
                         <th>Poste</th>
                         <th>Actions</th>
                     </tr>
@@ -41,10 +39,12 @@
                             <td>${employe.id}</td>
                             <td>${employe.prenom}</td>
                             <td>${employe.nom}</td>
+                            <td>${employe.getSalaireBrut()}F CFA</td>
                             <td>${employe.poste}</td>
                             <td class="d-flex gap-2">
                                 <a href="paiementSalaire?id=${employe.id}" class="btn btn-success btn-sm">Payer</a>
                                 <a href="modifierEmploye?id=${employe.id}" class="btn btn-warning btn-sm">Modifier</a>
+                                <a href="ficheDePaie?id=${employe.id}" class="btn btn-info btn-sm">Fiche de paie</a>
                             </td>
                         </tr>
                     </c:forEach>

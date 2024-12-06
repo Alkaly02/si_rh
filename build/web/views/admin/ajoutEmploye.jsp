@@ -16,6 +16,7 @@
         <%@include file="../header.jsp" %>
     </head>
     <body>
+        <%@include file="../navbar.jsp" %>
         <div class="container">
             <h2 class="text-center mt-4">Ajoutez un employé</h2>
             <c:if test="${not empty errors}">

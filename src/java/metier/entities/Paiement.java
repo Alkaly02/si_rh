@@ -6,27 +6,6 @@ package metier.entities;
 
 import java.io.Serializable;
 
-enum Mois{
-    Janvier("Janvier"),
-    Fevrier("Février"),
-    Mars("Mars"),
-    Avril("Avril"),
-    Mai("Mai"),
-    Juin("Juin"),
-    Juillet("Juillet"),
-    Aout("Août"),
-    Septembre("Septembre"),
-    Octobre("Octobre"),
-    Novembre("Novembre"),
-    Decembre("Décembre");
-    
-    public final String label;
-    
-    private Mois(String label){
-        this.label = label;
-    }
-}
-
 /**
  *
  * @author HP
@@ -38,17 +17,38 @@ public class Paiement implements Serializable {
     private Mois mois;
     private int annee;
     private String date_paiement;
-    private int employe_id;
+    private Employe employe;
+    
+    public static enum Mois{
+    Janvier("Janvier"),
+    Fevrier("Fevrier"),
+    Mars("Mars"),
+    Avril("Avril"),
+    Mai("Mai"),
+    Juin("Juin"),
+    Juillet("Juillet"),
+    Aout("Août"),
+    Septembre("Septembre"),
+    Octobre("Octobre"),
+    Novembre("Novembre"),
+    Decembre("Decembre");
+    
+    public final String label;
+    
+    private Mois(String label){
+        this.label = label;
+    }
+}
 
     public Paiement() {}
 
-    public Paiement(Double prime, Double salaire_net, Mois mois, int annee, String date_paiement, int employe_id) {
+    public Paiement(Double prime, Double salaire_net, Mois mois, int annee, String date_paiement, Employe employe) {
         this.prime = prime;
         this.salaire_net = salaire_net;
         this.mois = mois;
         this.annee = annee;
         this.date_paiement = date_paiement;
-        this.employe_id = employe_id;
+        this.employe = employe;
     }
 
     public int getId() {
@@ -67,11 +67,11 @@ public class Paiement implements Serializable {
         this.prime = prime;
     }
 
-    public Double getSalaire_net() {
+    public Double getSalaireNet() {
         return salaire_net;
     }
 
-    public void setSalaire_net(Double salaire_net) {
+    public void setSalaireNet(Double salaire_net) {
         this.salaire_net = salaire_net;
     }
 
@@ -91,19 +91,19 @@ public class Paiement implements Serializable {
         this.annee = annee;
     }
 
-    public String getDate_paiement() {
+    public String getDatePaiement() {
         return date_paiement;
     }
 
-    public void setDate_paiement(String date_paiement) {
+    public void setDatePaiement(String date_paiement) {
         this.date_paiement = date_paiement;
     }
 
-    public int getEmploye_id() {
-        return employe_id;
+    public Employe getEmploye() {
+        return this.employe;
     }
 
-    public void setEmploye_id(int employe_id) {
-        this.employe_id = employe_id;
+    public void setEmploye(Employe employe) {
+        this.employe = employe;
     }
 }

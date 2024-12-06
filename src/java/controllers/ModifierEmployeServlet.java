@@ -8,7 +8,6 @@ import dao.CategorieEmployeDao;
 import dao.EmployeDao;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -17,36 +16,58 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
-import metier.entities.CategorieEmploye;
 import metier.entities.Employe;
 
 /**
  *
  * @author HP
  */
-@WebServlet(name = "AjoutEmploye", urlPatterns = {"/ajoutEmploye"})
-public class AjoutEmploye extends HttpServlet {
-    private EmployeDao employeDao;
-    @Override
-    public void init() throws ServletException {
-        employeDao = new EmployeDao();
-    }
+@WebServlet(name = "ModifierEmploye", urlPatterns = {"/modifierEmploye"})
+public class ModifierEmployeServlet extends HttpServlet {
 
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String employeId = request.getParameter("id");
+        
+//        Recuperation des categories des employes
         CategorieEmployeDao categorieEmployeDao = new CategorieEmployeDao();
         request.setAttribute("categoriesEmployes", categorieEmployeDao.get());
-//      Forward de la requete
-        RequestDispatcher dispatcher = request.getRequestDispatcher("views/admin/ajoutEmploye.jsp");
+
+        EmployeDao employeDao = new EmployeDao();
+//        Recuperer l'employe
+        Employe employe = employeDao.getOne(Integer.parseInt(employeId));
+//        Ajouter l'employer dans la requete
+        request.setAttribute("employe", employe);
+        request.setAttribute("employeId", employeId);
+//        Transfert de la requete
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/admin/modifierEmploye.jsp");
         dispatcher.forward(request, response);
     }
 
-
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
          // Récupération des paramètres du formulaire
+        String employeId = request.getParameter("employe_id");
         String prenom = request.getParameter("prenom");
         String nom = request.getParameter("nom");
         String poste = request.getParameter("poste");
@@ -61,7 +82,7 @@ public class AjoutEmploye extends HttpServlet {
         if (prenom == null || prenom.trim().isEmpty()) {
             errors.put("prenom", "Le prénom est obligatoire.");
         }
-
+//
         if (nom == null || nom.trim().isEmpty()) {
             errors.put("nom", "Le nom est obligatoire.");
         }
@@ -84,36 +105,43 @@ public class AjoutEmploye extends HttpServlet {
         if (typeEmploye == null || typeEmploye.trim().isEmpty()) {
             errors.put("type", "Le type d'employé est obligatoire.");
         }
-        
-//        if (!"ADMIN RH".equals(typeEmploye) || !"EMPLOYE".equals(typeEmploye)) {
-//            errors.put("type", "Le type d'employé doit etre ARMIN RH ou EMPLOYE. " + typeEmploye);
-//        }
 
         if (categorieEmployeId == null || categorieEmployeId.trim().isEmpty()) {
             errors.put("categorieEmployeId", "La catégorie d'employé est obligatoire.");
         }
 
+        Employe employe = new Employe(prenom, nom, poste, salaireBrut, typeEmploye, Integer.parseInt(categorieEmployeId));
+        employe.setId(Integer.parseInt(employeId));
+        
         // Si des erreurs sont présentes, renvoyer au formulaire avec les erreurs
         if (!errors.isEmpty()) {
             CategorieEmployeDao categorieEmployeDao = new CategorieEmployeDao();
             request.setAttribute("categoriesEmployes", categorieEmployeDao.get());
+            request.setAttribute("employe", employe);
+            request.setAttribute("employeId", employeId);
             request.setAttribute("errors", errors);
             request.setAttribute("formData", request.getParameterMap()); // Pour pré-remplir les champs
-            request.getRequestDispatcher("views/admin/ajoutEmploye.jsp").forward(request, response);
+            request.getRequestDispatcher("views/admin/modifierEmploye.jsp").forward(request, response);
             return;
         }
         
-        Employe employe = new Employe(prenom, nom, poste, salaireBrut, typeEmploye, Integer.parseInt(categorieEmployeId));
+       
+        EmployeDao employeDao = new EmployeDao();
+//        Modifier employe
+        employeDao.edit(employe);
         
-//        Sauvegarder un employe
-        employeDao.save(employe);
-        
-        String message = URLEncoder.encode(employe.getPrenom() + " ajouté avec succès", "UTF-8");
+        String message = URLEncoder.encode(prenom +" mis a jour avec succès", "UTF-8");
         response.sendRedirect(request.getContextPath() + "/listeEmployes?successMessage=" + message);
-//        request.setAttribute("successMessage", employe.getPrenom() + " ajouté avec succès");
-//        Transferet la requete vers la liste des employes
-//        response.sendRedirect(request.getContextPath() + "/listeEmployes");
     }
 
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
 
 }

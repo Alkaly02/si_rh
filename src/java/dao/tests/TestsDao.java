@@ -5,7 +5,9 @@
 package dao.tests;
 
 import dao.EmployeDao;
+import dao.PaiementDao;
 import metier.entities.Employe;
+import metier.entities.Paiement;
 
 /**
  *
@@ -28,8 +30,11 @@ public class TestsDao {
 //        employeDao.edit(employe2);
         
 //        Paiement salaire
-        employeDao.payerSalaire(employe2, "Janvier", 25000.0);
+//        employeDao.payerSalaire(employe2, "Janvier", 25000.0);
         
-        System.out.println(searchEmploye.getPrenom());
+        PaiementDao paiementDao = new PaiementDao();
+        Paiement fichePaie = paiementDao.getFichePaieByEmployeId(1);
+        
+        System.out.println(fichePaie.getPrime());
     }
 }

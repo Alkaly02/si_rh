@@ -4,8 +4,7 @@
  */
 package controllers;
 
-import dao.EmployeDao;
-import jakarta.servlet.RequestDispatcher;
+import dao.PaiementDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,26 +12,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
-import metier.entities.Employe;
+import metier.entities.Paiement;
 
 /**
  *
  * @author HP
  */
-@WebServlet(name = "ListeEmployes", urlPatterns = {"/listeEmployes"})
-public class ListeEmployes extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-
+@WebServlet(name = "FicheDePaieServlet", urlPatterns = {"/ficheDePaie"})
+public class FicheDePaieServlet extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -46,13 +33,12 @@ public class ListeEmployes extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        EmployeDao employeDao = new EmployeDao();
-        List<Employe> employes = employeDao.getAll();
-        
-        request.setAttribute("employes", employes);
-        
-        RequestDispatcher dispatcher = request.getRequestDispatcher("views/admin/listeEmployes.jsp");
-        dispatcher.forward(request, response);
+        String employeId = request.getParameter("id");
+        PaiementDao paiementDao = new PaiementDao();
+        Paiement fichePaie = paiementDao.getFichePaieByEmployeId(Integer.parseInt(employeId));
+
+        request.setAttribute("fichePaie", fichePaie);
+        request.getRequestDispatcher("views/admin/ficheDePaie.jsp").forward(request, response);
     }
 
     /**

@@ -4,24 +4,22 @@
  */
 package controllers;
 
-import dao.EmployeDao;
-import jakarta.servlet.RequestDispatcher;
+import dao.PaiementDao;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
-import metier.entities.Employe;
+import metier.entities.Paiement;
 
 /**
  *
  * @author HP
  */
-@WebServlet(name = "PointageEmployes", urlPatterns = {"/pointageEmployes"})
-public class PointageEmployes extends HttpServlet {
+@WebServlet(name = "ListePaiementsServlet", urlPatterns = {"/listePaiements"})
+public class ListePaiementsServlet extends HttpServlet {
 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -36,14 +34,10 @@ public class PointageEmployes extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        Recuperation des employes
-          EmployeDao employeDao = new EmployeDao();
-          List<Employe> employes = employeDao.getAll();
-//        Ajouter les employes dans les entete de la reponse
-          request.setAttribute("employes", employes);
-//        Transferer la requete vers la page jsp correspondante
-        RequestDispatcher dispatcher = request.getRequestDispatcher("views/admin/pointageEmployes.jsp");
-        dispatcher.forward(request, response);
+        PaiementDao paiementDao = new PaiementDao();
+        List<Paiement> paiements = paiementDao.getAll();
+        request.setAttribute("paiements", paiements);
+        request.getRequestDispatcher("views/admin/listePaiements.jsp").forward(request, response);
     }
 
     /**
@@ -57,7 +51,7 @@ public class PointageEmployes extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+       
     }
 
     /**

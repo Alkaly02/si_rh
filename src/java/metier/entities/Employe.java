@@ -5,6 +5,7 @@
 package metier.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
 enum TypeEmploye {
     ADMIN_RH("ADMIN RH"),
@@ -29,6 +30,8 @@ public class Employe implements Serializable {
     private Double salaire_brut;
     private String type;
     private int categorie_id;
+    private CategorieEmploye categorie;
+    private List<Deduction> deductions;
 
     public Employe() {}
 
@@ -95,6 +98,22 @@ public class Employe implements Serializable {
 
     public void setCategorieId(int categorie_id) {
         this.categorie_id = categorie_id;
+    }
+
+    public CategorieEmploye getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(CategorieEmploye categorie) {
+        this.categorie = categorie;
+    }
+
+    public List<Deduction> getDeductions() {
+        return deductions;
+    }
+
+    public void setDeductions(List<Deduction> deductions) {
+        this.deductions = deductions;
     }
     
     
